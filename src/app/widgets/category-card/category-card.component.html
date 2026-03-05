@@ -1,0 +1,29 @@
+<div class="category-card"
+     [class.active]="active"
+     (click)="selectCategory()">
+
+  <div class="category-header">
+    <h3>{{ category.name }}</h3>
+
+    @if (category.asvsLevelAcquired > 0) {
+      <span class="badge-level">
+        L{{ category.asvsLevelAcquired }}
+      </span>
+    }
+  </div>
+
+  <div class="progress-info">
+    <span>{{ category.validityPercentage }}%</span>
+
+    <span class="count">
+      {{ category.validCriteria }}/{{ category.totalCriteria }}
+    </span>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar"
+         [style.width.%]="category.validityPercentage">
+    </div>
+  </div>
+
+</div>

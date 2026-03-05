@@ -1,0 +1,108 @@
+<div class="app-container">
+<app-header (resetWorkspace)="reset()"></app-header>
+  @if (checklist) {
+    <main class="content-wrapper">
+  <app-dashboard-stats
+    [checklist]="checklist">
+  </app-dashboard-stats>
+
+      <app-categories-grid
+  [categories]="checklist.categories"
+  [selectedCategory]="selectedCategory"
+  (categorySelected)="selectCategory($event)">
+</app-categories-grid>
+
+     @if (selectedCategory) {
+ <app-requirements-list
+  [category]="selectedCategory"
+  (requirementSelected)="selectRequirement($event)">
+</app-requirements-list>
+}
+    </main>
+
+   @if (selectedRequirement) {
+  <div class="modal-overlay" (click)="selectedRequirement = null">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      
+      <header class="modal-header">
+        <div class="header-title-group">
+          <span class="req-badge">Requirement</span>
+          <h3>{{ selectedRequirement.id }}</h3>
+        </div>
+        <button class="btn-close" (click)="selectedRequirement = null">✕</button>
+      </header>
+
+      <div class="modal-grid">
+        <div class="modal-main">
+          <section class="info-section">
+            <p class="requirement-text">{{ selectedRequirement.verificationRequirement }}</p>
+            <div class="meta-tags">
+              <span class="tag lvl">ASVS Level {{ selectedRequirement.asvsLevel }}</span>
+              @if (selectedRequirement.cwe) { <span class="tag cwe">CWE-{{ selectedRequirement.cwe }}</span> }
+              @if (selectedRequirement.nist) { <span class="tag nist">NIST {{ selectedRequirement.nist }}</span> }
+            </div>
+          </section>
+
+          <section class="ai-section">
+            <div class="ai-header">
+              <h4>AI Assistant Guidance</h4>
+              @if (!showAiExplanation) {
+                <button class="btn btn-ai-trigger" (click)="loadAiExplanation()" [disabled]="aiLoading">
+                  {{ aiLoading ? 'Analysing...' : 'Generate AI Insights' }}
+                </button>
+              }
+            </div>
+
+            @if (showAiExplanation) {
+              <div class="ai-container">
+                <nav class="ai-tabs">
+                  <button (click)="activeTab = 'explanation'" [class.active]="activeTab === 'explanation'">Overview</button>
+                  <button (click)="activeTab = 'codeExample'" [class.active]="activeTab === 'codeExample'">Code Sample</button>
+                  <button (click)="activeTab = 'testing'" [class.active]="activeTab === 'testing'">Test Cases</button>
+                </nav>
+                <div class="ai-panel">
+                  @if (aiLoading) {
+                    <div class="shimmer-loader"></div>
+                  } @else {
+                    <div class="markdown-body" [innerHTML]="aiExplanation | markdown"></div>
+                  }
+                </div>
+              </div>
+            }
+          </section>
+        </div>
+
+        <aside class="modal-sidebar">
+          <div class="status-box">
+            <h4>Implementation Status</h4>
+            <div class="options-vertical">
+              @for (option of selectedRequirement.options; track option.id) {
+                <label class="status-option" [class.active]="option.isSelected" [attr.data-opt]="option.name">
+                  <input type="radio" 
+                         [name]="'opt-'+selectedRequirement.id"
+                         [checked]="option.isSelected"
+                         (change)="selectOption(option.id)">
+                  <span class="radio-custom"></span>
+                  <span class="opt-label">{{ option.name }}</span>
+                </label>
+              }
+            </div>
+          </div>
+          
+          <div class="sidebar-info">
+            <p>Select the status that best represents your current implementation phase.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+}
+  } @else {
+    <div class="loader">
+      <div class="spinner"></div>
+      <p>Loading Checklist...</p>
+    </div>
+  }
+
+  
+</div>

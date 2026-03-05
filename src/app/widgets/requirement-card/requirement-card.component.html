@@ -1,0 +1,30 @@
+<div
+  class="req-card"
+  [class.is-valid]="requirement.valid === 'Valid'"
+  [class.is-invalid]="requirement.valid === 'Invalid'"
+>
+
+  <div class="req-card-header">
+    <span class="req-id">#{{ requirement.id }}</span>
+    <span class="lvl-tag">Level {{ requirement.asvsLevel }}</span>
+
+    <span class="status-pill"
+          [attr.data-status]="requirement.valid">
+      {{ requirement.valid || 'Pending' }}
+    </span>
+  </div>
+
+  <div class="req-card-body">
+    <p>{{ requirement.verificationRequirement }}</p>
+  </div>
+
+  <div class="req-card-footer">
+    <button
+      class="btn btn-sm btn-succes"
+      (click)="selectRequirement()">
+
+      🔍 Review Requirement
+    </button>
+  </div>
+
+</div>

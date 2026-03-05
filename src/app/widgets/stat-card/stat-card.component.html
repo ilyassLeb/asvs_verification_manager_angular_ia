@@ -1,0 +1,11 @@
+<div class="stat-card">
+  <span class="stat-value">{{ value }}</span>
+  <span class="stat-label">{{ label }}</span>
+
+  <!-- Mini donut chart -->
+  <canvas baseChart 
+          [data]="chartData" 
+          [type]="chartType"
+          height="60">
+  </canvas>
+</div>

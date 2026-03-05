@@ -1,0 +1,17 @@
+<section class="section-container">
+
+    <h2 class="section-title">Security Categories</h2>
+
+    <div class="categories-grid">
+
+        @for (category of categories; track category.name) {
+
+        <app-category-card [category]="category" [active]="selectedCategory?.name === category.name"
+            (categorySelected)="onCategorySelected($event)">
+        </app-category-card>
+
+        }
+
+    </div>
+
+</section>

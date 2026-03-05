@@ -1,0 +1,25 @@
+<section class="dashboard-stats">
+  <app-stat-card
+    color="blue"
+    [value]="checklist.getTotalCompleted()"
+    label="Completed">
+  </app-stat-card>
+
+  <app-stat-card
+    color="green"
+    [value]="checklist.getTotalValid()"
+    label="Valid">
+  </app-stat-card>
+
+  <app-stat-card
+    color="red"
+    [value]="checklist.getTotalInvalid()"
+    label="Invalid">
+  </app-stat-card>
+
+  <app-stat-card
+    color="purple"
+    [value]="checklist.getOverallLevel()"
+    label="Target Level">
+  </app-stat-card>
+</section>
