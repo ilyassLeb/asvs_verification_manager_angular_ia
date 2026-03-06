@@ -2,6 +2,9 @@
   command = "npm install --legacy-peer-deps && npm run build"
   publish = "dist/owasp-asvs-helper"
 
+[build.environment]
+  NODE_VERSION = "20"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
