@@ -19,4 +19,4 @@ const envConfigFile = `export const environment = {
 fs.writeFileSync(path.join(dir, 'environment.ts'), envConfigFile);
 fs.writeFileSync(path.join(dir, 'environment.prod.ts'), envConfigFile);
 
-console.log('✅ Fichiers d\'environnement générés dynamiquement.');sss
+console.log('✅ Fichiers d\'environnement générés dynamiquement.');
