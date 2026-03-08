@@ -24,7 +24,7 @@ export class AiService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.apiKey}`,
       'Content-Type': 'application/json',
-      'X-Organization-Id': environment.organizationId  // <-- ici
+      'X-Organization-Id': environment.organizationId  
     });
 
     const payload = {

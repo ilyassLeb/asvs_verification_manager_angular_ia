@@ -1,28 +1,72 @@
-https://owasp-asvs-helper.netlify.app/
-# OwaspAsvsHelper
+🛡️ OWASP ASVS Verification Manager (Angular 18)
+Une plateforme interactive et intelligente conçue pour simplifier la vérification de la norme OWASP ASVS (Application Security Verification Standard). Cet outil permet aux auditeurs et développeurs de suivre la conformité de sécurité de leurs applications avec l'assistance de l'IA.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+ Démo en direct : 
 
-## Development server
+Fonctionnalités Clés
+Dashboard Interactif : Visualisation en temps réel de la progression par catégories de sécurité.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Gestion des Exigences : Liste exhaustive des contrôles ASVS avec filtrage par niveau (L1, L2, L3).
 
-## Code scaffolding
+IA Intégrée : Assistance intelligente (via Groq/HuggingFace) pour expliquer les contrôles et suggérer des méthodes de remédiation.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Interface Moderne : Design responsive, modaux détaillés et expérience utilisateur fluide.
 
-## Build
+Architecture Technique
+Atomic Design Pattern
+Le projet est structuré selon la méthodologie Atomic Design, garantissant une modularité et une réutilisabilité maximale des composants :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Atoms : Boutons, badges de statut, icônes.
 
-## Running unit tests
+Molecules : Cartes de statistiques, barres de progression.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Organisms : Grilles de catégories, panneaux d'analyse IA, modaux complexes.
 
-## Running end-to-end tests
+Pages : Dashboard principal et vues de vérification.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Stack Technique
+Framework : Angular 18 (Standalone Components).
 
-## Further help
+Style : CSS3 avancé avec variables dynamiques (Theming).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+IA : Intégration via SDK @google/generative-ai et @huggingface/inference.
+
+Déploiement : CI/CD automatisé sur Netlify.
+
+Sécurité & DevSecOps
+Une attention particulière a été portée à la protection des secrets :
+
+Injection de Secrets : Utilisation d'un script set-env.js lors du build CI/CD pour injecter les clés API sans les versionner sur GitHub.
+
+Zéro-Leak : Configuration stricte du .gitignore pour protéger les fichiers d'environnement.
+
+Normes : Respect des principes de sécurité défensifs dès la conception (Secure by Design).
+
+🛠️ Installation et Développement
+Prérequis
+Node.js (v20+)
+
+Angular CLI
+
+Installation
+Cloner le projet :
+
+Installer les dépendances :
+
+Lancer le serveur de développement :
+
+Accédez à http://localhost:4200/.
+
+📦 Build et Déploiement
+Production
+Le build est optimisé pour la production avec la commande :
+
+Déploiement Netlify
+Le projet est configuré pour Netlify via le fichier netlify.toml. Le build automatique exécute :
+
+node set-env.js (génération des fichiers d'environnement).
+
+ng build (compilation de l'application).
+
+👨‍💻 Auteur
+LABHEL /ILYASS : Développeur Front-end & Passionné de Cybersécurité
